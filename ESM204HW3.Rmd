@@ -1,0 +1,56 @@
+---
+title: "Preventing Whale Strikes in the Santa Barbara Channel"
+author: "Laura Ingulsrud"
+date: "5/14/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+
+# Load necessary packages
+library(tidyverse)
+
+```
+
+```{r}
+
+# Load in data set from whale valuation surveys
+whalesurveydata <- read_csv("HW3Data.csv")
+
+```
+
+```{r #1}
+
+```
+
+```{r #2}
+
+```
+
+```{r #3}
+
+```
+
+```{r #4}
+
+```
+
+```{r #5}
+
+```
+
+```{r #6}
+
+```
+
+```{r #7}
+
+```
+
+```{r #8}
+
+```
