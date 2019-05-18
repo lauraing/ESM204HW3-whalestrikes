@@ -36,7 +36,7 @@ whalesurveydata <- read_csv("HW3Data.csv")
 
 # 1. Create a linear probability model that predicts a respondent’s probability of voting ‘yes’ on the ballot based on their age, income, NEP score, the risk reduction offered by the program, and the cost of the program to that respondent. Show the model and interpret the regression coefficients.
 
-# Create a linear regression model
+# Do a linear regression through the data
 whalesurvey_lm <- lm(vote ~ risk + bid + vote + NEP + income + age, data = whalesurveydata)
 
 summary(whalesurvey_lm)
@@ -60,23 +60,34 @@ risk <- whalesurvey_lm$coefficients[12]
   # Income: middle
 
 ```
-For every 1% increase in risk reduction, there is a 0.07% greater chance of voting yes.
-For every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes.
-For every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes.
-Respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level.
-Respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level.
-Respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level.
-Respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level.
-Respondents in the to fifty age group are 0.10% more likely to vote yes than respondents in the over sixty age group.
-Respondents in the to forty age group are 2.01% less likely to vote yes than respondents in the over sixty age group.
-Respondents in the to sixty age group are 1.62% less likely to vote yes than respondents in the over sixty age group.
-Respondents in the to thirty age group are 2.04% more likely to vote yes than respondents in the over sixty age group.
+$Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(ageto30, digits = 4)`)(age~to~thirty) + (`r round(ageto40, digits = 4)`)(age~to~forty) + (`r round(ageto50, digits = 4)`)(age~to~fifty) + (`r round(ageto60, digits = 4)`)(age~to~sixty) + (`r round(poor, digits = 4)`)(poor~income~level) + (`r round(rich, digits = 4)`)(rich~income~level) + (`r round(very_rich,digits = 4)`)(very~rich~income~level) +(`r round(one_percent, digits = 4)`)(one~percent~income~level) +  (`r round(NEP, digits = 4)`)(NEP) + (`r round(bid, digits = 4)`)(bid) + (`r round(risk, digits = 4)`)(risk~reduction~level)$
 
+<br>
+
+Respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
+Respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
+Respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
+Respondents in the age to sixty group are 1.62% less likely to vote yes than respondents in the over sixty age group. <br>
+Respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level. <br>
+Respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level. <br>
+Respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level. <br>
+Respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level. <br>
+For every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes. <br>
+For every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes. <br>
+For every 1% increase in risk reduction level, there is a 0.07% greater chance of voting yes. <br>
+
+<br>
+<br>
+
+###**2.** 
 ```{r #2}
 
 # 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
+
 ```
+
+
 
 ```{r #3}
 
