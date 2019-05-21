@@ -43,17 +43,17 @@ summary(whalesurvey_lm)
 
 # Assign coefficients
 intercept <- whalesurvey_lm$coefficients[1]
-ageto50 <- whalesurvey_lm$coefficients[2]
-ageto40 <- whalesurvey_lm$coefficients[3]
-ageto60 <- whalesurvey_lm$coefficients[4]
-ageto30 <- whalesurvey_lm$coefficients[5]
-one_percent <- whalesurvey_lm$coefficients[6]
-poor <- whalesurvey_lm$coefficients[7]
-rich <- whalesurvey_lm$coefficients[8]
-very_rich <- whalesurvey_lm$coefficients[9]
-NEP <- whalesurvey_lm$coefficients[10]
-bid <- whalesurvey_lm$coefficients[11]
-risk <- whalesurvey_lm$coefficients[12]
+risk <- whalesurvey_lm$coefficients[2]
+bid <- whalesurvey_lm$coefficients[3]
+NEP <- whalesurvey_lm$coefficients[4]
+one_percent <- whalesurvey_lm$coefficients[5]
+poor <- whalesurvey_lm$coefficients[6]
+rich <- whalesurvey_lm$coefficients[7]
+very_rich <- whalesurvey_lm$coefficients[8]
+ageto50 <- whalesurvey_lm$coefficients[9]
+ageto40 <- whalesurvey_lm$coefficients[10]
+ageto60 <- whalesurvey_lm$coefficients[11]
+ageto30 <- whalesurvey_lm$coefficients[12]
 
 # Reference coefficients:
   # Age: oversixty
@@ -64,17 +64,17 @@ $Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(aget
 
 <br>
 
-Respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
-Respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
-Respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
-Respondents in the age to sixty group are 1.62% less likely to vote yes than respondents in the over sixty age group. <br>
-Respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level. <br>
-Respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level. <br>
-Respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level. <br>
-Respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level. <br>
-For every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes. <br>
-For every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes. <br>
-For every 1% increase in risk reduction level, there is a 0.07% greater chance of voting yes. <br>
+With all other variables held constant, respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
+With all other variables held constant, respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
+With all other variables held constant, respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
+With all other variables held constant, respondents in the age to sixty group are 1.62% less likely to vote yes than respondents in the over sixty age group. <br>
+With all other variables held constant, respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level. <br>
+With all other variables held constant, respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level. <br>
+With all other variables held constant, respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level. <br>
+With all other variables held constant, respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level. <br>
+With all other variables held constant, for every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes. <br>
+With all other variables held constant, for every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes. <br>
+With all other variables held constant, for every 1% increase in risk reduction level, there is a 0.07% greater chance of voting yes. <br>
 
 <br>
 <br>
