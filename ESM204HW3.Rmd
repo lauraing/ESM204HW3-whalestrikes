@@ -84,8 +84,7 @@ With all other variables held constant, for every 1% increase in risk reduction 
 
 # 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
-<<<<<<< HEAD
-=======
+
 #Mode for categorical variables
 #age
 whalesurveyage <- whalesurveydata %>% 
@@ -113,7 +112,6 @@ bid_diff <- bid4 - bid0
 
 bid_diff
 
->>>>>>> b577909d38fcecf2f7045399b689aa86e528edfa
 ```
 
 
@@ -159,13 +157,17 @@ total_benefit
 
 # 6. Based only on these benefits, do the benefits of the VSR program outweigh the costs?
 
-
+#Yes, by $35,378,337
+net_benefits <- total_benefit - 7000000
+net_benefits
 
 ```
 
 ```{r #7}
 
 # 7. Suppose the price of a carbon credit is $Z per ton, at what price Z* will the shipping industry decide to adopt the VSR for purely self-interested reasons? (Note: if ships voluntarily reduce speed, then the $7 million cost (noted above) of implementing the VSR would be avoided)
+
+
 
 ```
 
