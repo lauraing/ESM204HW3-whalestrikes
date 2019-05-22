@@ -168,12 +168,21 @@ net_benefits
 
 # 7. Suppose the price of a carbon credit is $Z per ton, at what price Z* will the shipping industry decide to adopt the VSR for purely self-interested reasons? (Note: if ships voluntarily reduce speed, then the $7 million cost (noted above) of implementing the VSR would be avoided)
 
+#Find the price of what 1 ton of carbon would have to be given that saving 20tons costs shippers $1000
+1000/20
 
+#$50/ton
 
 ```
 
 ```{r #8}
 
 # 8. Now suppose the carbon credit price is exactly Z*, so all ships voluntarily reduce speed to achieve the 60% risk reduction. Approximately how many whales would be saved by this? What would be the social value of allowing ships to enter the carbon trading market?
+
+#Social Value - same as 5 since value of offset carbon and compliance cost cancel (they're the same)
+
+#Number of whales saved 
+#If 20% reduction saves 5 whales, then 60% reduction saves 15 whales
+
 
 ```
