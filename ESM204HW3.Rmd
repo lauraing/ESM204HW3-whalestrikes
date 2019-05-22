@@ -110,9 +110,9 @@ bid4 <- (0.5 - intercept - risk*4 - NEP*meanNEP - one_percent - ageto30)/bid
 
 bid_diff <- bid4 - bid0
 
-bid_diff
+bid_diff # $2.78
 
->>>>>>> b577909d38fcecf2f7045399b689aa86e528edfa
+
 ```
 
 
@@ -124,13 +124,13 @@ bid_diff
 #Person 1
 
 bid1 <- (0.5 - intercept - risk*60 - NEP*44 - very_rich - ageto60)/bid
-bid1
+bid1 # $367.27
 
 bid2 <- (0.5 - intercept - risk*60 - NEP*39 - poor - ageto30)/bid
-bid2
+bid2 # $286.23
 
 bid3 <- (0.5 - intercept - risk*60 - NEP*53 - one_percent - ageto50)/bid
-bid3
+bid3 # $489.73
 
 
 
@@ -141,7 +141,7 @@ bid3
 # 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
 
 bid_average <- (0.5 - intercept - risk*60 - NEP*meanNEP - one_percent - ageto30)/bid
-bid_average
+bid_average # $282.52
 
 ```
 
@@ -150,7 +150,7 @@ bid_average
 # 5. If there are 150,000 households in Santa Barbara County, estimate the total benefit of a VSR program to these households.
 
 total_benefit <- 150000*bid_average
-total_benefit
+total_benefit # $42,378,337
 
 ```
 
