@@ -98,6 +98,7 @@ group_by(income) %>%
 count(income)
 #One-percent is most respondents n = 158 
 
+
 #Average NEP 
 meanNEP <- mean(whalesurveydata$NEP)
 
@@ -122,13 +123,13 @@ bid_diff
 
 #Person 1
 
-bid1 <- (0.78 - intercept - risk*60 - NEP*44 - very_rich - ageto60)/bid
+bid1 <- (0.5 - intercept - risk*60 - NEP*44 - very_rich - ageto60)/bid
 bid1
 
-bid2 <- (0.78 - intercept - risk*60 - NEP*39 - poor - ageto30)/bid
+bid2 <- (0.5 - intercept - risk*60 - NEP*39 - poor - ageto30)/bid
 bid2
 
-bid3 <- (0.78 - intercept - risk*60 - NEP*53 - one_percent - ageto50)/bid
+bid3 <- (0.5 - intercept - risk*60 - NEP*53 - one_percent - ageto50)/bid
 bid3
 
 
@@ -139,7 +140,7 @@ bid3
 
 # 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
 
-bid_average <- (0.78 - intercept - risk*60 - NEP*meanNEP - one_percent - ageto30)/bid
+bid_average <- (0.5 - intercept - risk*60 - NEP*meanNEP - one_percent - ageto30)/bid
 bid_average
 
 ```
@@ -148,11 +149,16 @@ bid_average
 
 # 5. If there are 150,000 households in Santa Barbara County, estimate the total benefit of a VSR program to these households.
 
+total_benefit <- 150000*bid_average
+total_benefit
+
 ```
 
 ```{r #6}
 
 # 6. Based only on these benefits, do the benefits of the VSR program outweigh the costs?
+
+
 
 ```
 
