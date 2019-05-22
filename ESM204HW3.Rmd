@@ -84,6 +84,35 @@ With all other variables held constant, for every 1% increase in risk reduction 
 
 # 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
+<<<<<<< HEAD
+=======
+#Mode for categorical variables
+#age
+whalesurveyage <- whalesurveydata %>% 
+group_by(age) %>% 
+  count(age)
+#To thirty is most respondents, n = 123
+
+#income 
+whalesurveyincome <- whalesurveydata %>% 
+group_by(income) %>% 
+count(income)
+#One-percent is most respondents n = 158 
+
+#Average NEP 
+meanNEP <- mean(whalesurveydata$NEP)
+
+#Value of 1 whale 
+
+bid0 <- (0.5 - intercept - risk*0 - NEP*meanNEP - one_percent - ageto30)/bid
+
+bid4 <- (0.5 - intercept - risk*4 - NEP*meanNEP - one_percent - ageto30)/bid
+
+bid_diff <- bid4 - bid0
+
+bid_diff
+
+>>>>>>> b577909d38fcecf2f7045399b689aa86e528edfa
 ```
 
 
@@ -92,11 +121,27 @@ With all other variables held constant, for every 1% increase in risk reduction 
 
 # 3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction.
 
+#Person 1
+
+bid1 <- (0.78 - intercept - risk*60 - NEP*44 - very_rich - ageto60)/bid
+bid1
+
+bid2 <- (0.78 - intercept - risk*60 - NEP*39 - poor - ageto30)/bid
+bid2
+
+bid3 <- (0.78 - intercept - risk*60 - NEP*53 - one_percent - ageto50)/bid
+bid3
+
+
+
 ```
 
 ```{r #4}
 
 # 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
+
+bid_average <- (0.78 - intercept - risk*60 - NEP*meanNEP - one_percent - ageto30)/bid
+bid_average
 
 ```
 
