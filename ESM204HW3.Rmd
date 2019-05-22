@@ -84,8 +84,7 @@ With all other variables held constant, for every 1% increase in risk reduction 
 
 # 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
-<<<<<<< HEAD
-=======
+
 #Mode for categorical variables
 #age
 whalesurveyage <- whalesurveydata %>% 
