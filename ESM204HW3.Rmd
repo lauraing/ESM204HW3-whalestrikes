@@ -1,9 +1,25 @@
 ---
-title: "Preventing Whale Strikes in the Santa Barbara Channel"
-author: "Laura Ingulsrud"
-date: "5/14/2019"
-output: html_document
+output:
+  html_document: 
+    df_print: paged
+    theme: cosmo
 ---
+
+**To:** Santa Barbara County Board of Supervisors <br>
+**From:** Laura Ingulsrud & Jenny Balmagia <br>
+**Re:** Economic Benefits of Reducing Whale Strikes in the Santa Barbara Channel <br>
+**Date:** 23 May 2019<br>
+
+**Introduction**
+
+
+**Analysis and Results**
+
+
+**Recommendations**
+
+
+<P style="page-break-before: always">
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -31,7 +47,9 @@ whalesurveydata <- read_csv("HW3Data.csv")
 
 ```
 
-###**1.** Linear Probability Model
+##**Technical Appendix**<br>
+
+###1. Linear Probability Model
 ```{r #1, include=FALSE, echo=FALSE}
 
 # 1. Create a linear probability model that predicts a respondent’s probability of voting ‘yes’ on the ballot based on their age, income, NEP score, the risk reduction offered by the program, and the cost of the program to that respondent. Show the model and interpret the regression coefficients.
@@ -60,35 +78,43 @@ ageto30 <- whalesurvey_lm$coefficients[12]
   # Income: middle
 
 ```
+<br>
+
+**Linear Regression Model:** <br>
+
 $Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(ageto30, digits = 4)`)(age~to~thirty) + (`r round(ageto40, digits = 4)`)(age~to~forty) + (`r round(ageto50, digits = 4)`)(age~to~fifty) + (`r round(ageto60, digits = 4)`)(age~to~sixty) + (`r round(poor, digits = 4)`)(poor~income~level) + (`r round(rich, digits = 4)`)(rich~income~level) + (`r round(very_rich,digits = 4)`)(very~rich~income~level) +(`r round(one_percent, digits = 4)`)(one~percent~income~level) +  (`r round(NEP, digits = 4)`)(NEP) + (`r round(bid, digits = 4)`)(bid) + (`r round(risk, digits = 4)`)(risk~reduction~level)$
 
 <br>
 
-**put in stargazer table?**
+```{r stargazer table, results="asis", echo=FALSE}
 
-Reference coefficients:
-- Age: oversixty
-- Income: middle
+stargazer::stargazer(whalesurvey_lm, type = "html", title = "Linear Regression Coefficients", digits = 4)
 
-<br>
-
-With all other variables held constant, respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
-With all other variables held constant, respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
-With all other variables held constant, respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
-With all other variables held constant, respondents in the age to sixty group are 1.62% less likely to vote yes than respondents in the over sixty age group. <br>
-With all other variables held constant, respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level. <br>
-With all other variables held constant, respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level. <br>
-With all other variables held constant, respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level. <br>
-With all other variables held constant, respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level. <br>
-With all other variables held constant, for every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes. <br>
-With all other variables held constant, for every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes. <br>
-With all other variables held constant, for every 1% increase in risk reduction level, there is a 0.07% greater chance of voting yes. <br>
+```
 
 <br>
-<br>
 
-###**2.** 
-```{r #2}
+**Reference coefficients:**
+
+- Age: oversixty <br>
+- Income: middle <br>
+
+**Regression Coefficient Interpretations:**
+
+- With all other variables held constant, respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
+- With all other variables held constant, respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
+- With all other variables held constant, respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
+- With all other variables held constant, respondents in the age to sixty group are 1.62% less likely to vote yes than respondents in the over sixty age group. <br>
+- With all other variables held constant, respondents in the poor income level are 0.27% more likely to vote yes than respondents in the middle income level. <br>
+- With all other variables held constant, respondents in the rich income level are 0.75% more likely to vote yes than respondents in the middle income level. <br>
+- With all other variables held constant, respondents in the very rich income level are 4.68% more likely to vote yes than respondents in the middle income level. <br>
+- With all other variables held constant, respondents in the one percent income level are 0.88% more likely to vote yes than respondents in the middle income level. <br>
+- With all other variables held constant, for every 1 point increase in NEP (measure of environmental concern), there is a 1.59% greater chance of voting yes. <br>
+- With all other variables held constant, for every $1 increase in bid (annual payment for household), there is a 0.11% less chance of voting yes. <br>
+- With all other variables held constant, for every 1% increase in risk reduction level, there is a 0.07% greater chance of voting yes. <br><br>
+
+###2. Value of a Single Prevented Whale Death
+```{r #2, include=FALSE, echo=FALSE}
 
 # 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
@@ -127,18 +153,23 @@ If a risk reduction of 20% saves 5 whales, then a risk reduction of 4% saves 1 w
 
 <br>
 
-$Bid(0) = 0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*0) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))/(`r round(bid, digits = 4)`)$
+$Bid(0) = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*0) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{(`r round(bid, digits = 4)`)}$
+
+$Bid(4) = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*4) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{(`r round(bid, digits = 4)`)}$
+
+$Bid(4) - Bid(0)$ = $2.78
 
 <br>
 
 **Assumptions:**
-- We used the mode for the categorical variables of age and income: The mode for the age variable was "ageto30" and the mode for the income variable was "one_percent".
-- We used the mean for the continuous variable, NEP.
-- We used 0.5 for the vote probability, since using a value of 0.5 (halfway between 0 and 1), will give us the median WTP.
-- *Note: These assumptions apply from #2-8.*
 
-###**3.** 
-```{r #3}
+- We used the mode for the categorical variables of age and income: The mode for the age variable was "ageto30" and the mode for the income variable was "one_percent". <br>
+- We used the mean for the continuous variable, NEP. <br>
+- We used 0.5 for the vote probability, since using a value of 0.5 (halfway between 0 and 1), will give us the median WTP. <br>
+- *Note: These assumptions apply for #2-8.* <br><br>
+
+###3. Random Respondents' WTP
+```{r #3, include=FALSE, echo=FALSE}
 
 # 3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction.
 
@@ -157,28 +188,28 @@ bid3 # $489.73
 
 ```
 
-- Respondent 1: 
-  - NEP = 44
-  - income = very_rich
-  - age = ageto60
-  - **WTP = $367.27**
-- Respondent 2: 
-  - NEP = 39
-  - income = poor
-  - age = ageto30
-  - **WTP = $286.23**
-- Respondent 3: 
-  - NEP = 53
-  - income = one_percent
-  - age = ageto50
-  - **WTP = $489.73**
-  
-<br>
+* *Respondent 1:* <br>
+  + NEP = 44 <br>
+  + income = very_rich <br>
+  + age = ageto60 <br>
+  + **WTP = $367.27** <br>
+  <br>
+* *Respondent 2:* <br>
+  + NEP = 39 <br>
+  + income = poor <br>
+  + age = ageto30 <br>
+  + **WTP = $286.23** <br>
+  <br>
+* *Respondent 3:* <br>
+  + NEP = 53 <br>
+  + income = one_percent <br>
+  + age = ageto50 <br>
+  + **WTP = $489.73** <br>
 
-We used the same equation from #2, but instead of using the means and modes for the variables, we plugged in these numbers for each random respondent.
+We used the same equation from #2, but instead of using the means and modes for the variables, we plugged in these numbers for each random respondent. <br><br>
 
-###**4.** 
-```{r #4}
+###4. Mean WTP for VSR Program
+```{r #4, include=FALSE, echo=FALSE}
 
 # 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
 
@@ -187,10 +218,10 @@ bid_average # $282.52
 
 ```
 
-We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**.
+We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**. <br><br>
 
-###**5.** 
-```{r #5}
+###5. Total Benefit of VSR Program to Santa Barbara County Households
+```{r #5, include=FALSE, echo=FALSE}
 
 # 5. If there are 150,000 households in Santa Barbara County, estimate the total benefit of a VSR program to these households.
 
@@ -199,10 +230,10 @@ total_benefit # $42,378,337
 
 ```
 
-We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of $42,378,337. Because you can assume humans are willing to pay this amount for having these whales exist, that’s the total benefit humans are receiving.
+We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of **$42,378,337**. Because you can assume humans are willing to pay this amount for having these whales exist, that’s the total benefit humans are receiving. <br><br>
 
-###**6.** 
-```{r #6}
+###6. VSR Program Benefit-Cost Comparison
+```{r #6, include=FALSE, echo=FALSE}
 
 # 6. Based only on these benefits, do the benefits of the VSR program outweigh the costs?
 
@@ -212,10 +243,10 @@ net_benefits
 
 ```
 
-We subtracted the $7 million cost of the VSR program from the total benefit of $42,378,337 to find that yes, the benefits of the VSR program outweigh the costs by $35,378,337.
+We subtracted the $7 million cost of the VSR program from the total benefit of $42,378,337 to find that **yes, the benefits of the VSR program outweigh the costs by $35,378,337.** <br><br>
 
-###**7.** 
-```{r #7}
+###7. Carbon Credit Price Needed for Shipping Industry to Adopt VSR Program
+```{r #7, include=FALSE, echo=FALSE}
 
 # 7. Suppose the price of a carbon credit is $Z per ton, at what price Z* will the shipping industry decide to adopt the VSR for purely self-interested reasons? (Note: if ships voluntarily reduce speed, then the $7 million cost (noted above) of implementing the VSR would be avoided)
 
@@ -226,10 +257,10 @@ We subtracted the $7 million cost of the VSR program from the total benefit of $
 
 ```
 
-If ships voluntarily reduce speed, the cost to each shipper would be $1,000 and 20 tons of CO2 emissions per transit would be reduced. Therefore, the price of 1 ton of CO2 is worth $50 ($1,000/20 tons). If there's a carbon credit worth $50/ton of CO2, the shipping industry wouldn't lose any money, and would adopt the VSR for purely self-interested reasons.
+If ships voluntarily reduce speed, the cost to each shipper would be $1,000 and 20 tons of CO2 emissions per transit would be reduced. Therefore, the price of 1 ton of CO2 is worth $50 ($1,000/20 tons). If there's a carbon credit worth **$50/ton of CO2**, the shipping industry wouldn't lose any money, and would adopt the VSR for purely self-interested reasons. <br><br>
 
-###**8.** 
-```{r #8}
+###8. Whales Saved by VSR Program Implementation Through Carbon Trading Markets
+```{r #8, include=FALSE, echo=FALSE}
 
 # 8. Now suppose the carbon credit price is exactly Z*, so all ships voluntarily reduce speed to achieve the 60% risk reduction. Approximately how many whales would be saved by this? What would be the social value of allowing ships to enter the carbon trading market?
 
@@ -241,8 +272,8 @@ If ships voluntarily reduce speed, the cost to each shipper would be $1,000 and 
 
 ```
 
-If a 20% risk reduction saves 5 whales, then a 60% risk reduction saves 15 whales.
+If a 20% risk reduction saves 5 whales, then a 60% risk reduction saves **15 whales**. <br>
 
-social value = value of program + value of offset carbon - compliance cost
+*social value = value of program + value of offset carbon - compliance cost* <br>
 
-Sine the value of offset carbon and the compliance cost are the same, they cancel each other out. Therefore, the social value of allowing ships to enter the carbon trading market is the same as the value of the program, which we found to be $42,378,337 (#5).
+Sine the value of offset carbon and the compliance cost are the same, they cancel each other out. Therefore, the social value of allowing ships to enter the carbon trading market is the same as the value of the program, which we found to be **$42,378,337** (#5).
