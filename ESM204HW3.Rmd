@@ -64,6 +64,14 @@ $Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(aget
 
 <br>
 
+**put in stargazer table?**
+
+Reference coefficients:
+- Age: oversixty
+- Income: middle
+
+<br>
+
 With all other variables held constant, respondents in the age to thirty group are 2.04% more likely to vote yes than respondents in the over sixty age group. <br>
 With all other variables held constant, respondents in the age to forty group are 2.01% less likely to vote yes than respondents in the over sixty age group. <br>
 With all other variables held constant, respondents in the age to fifty group are 0.10% more likely to vote yes than respondents in the over sixty age group. <br>
@@ -115,8 +123,21 @@ bid_diff # $2.78
 
 ```
 
+If a risk reduction of 20% saves 5 whales, then a risk reduction of 4% saves 1 whale. We created two functions, one assuming a risk reduction of 0% and one of 4%, then took the difference in value of these two functions to find the value of a single prevented whale death is **$2.78**.
 
+<br>
 
+$Bid(0) = 0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*0) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))/(`r round(bid, digits = 4)`)$
+
+<br>
+
+**Assumptions:**
+- We used the mode for the categorical variables of age and income: The mode for the age variable was "ageto30" and the mode for the income variable was "one_percent".
+- We used the mean for the continuous variable, NEP.
+- We used 0.5 for the vote probability, since using a value of 0.5 (halfway between 0 and 1), will give us the median WTP.
+- *Note: These assumptions apply from #2-8.*
+
+###**3.** 
 ```{r #3}
 
 # 3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction.
@@ -136,6 +157,27 @@ bid3 # $489.73
 
 ```
 
+- Respondent 1: 
+  - NEP = 44
+  - income = very_rich
+  - age = ageto60
+  - **WTP = $367.27**
+- Respondent 2: 
+  - NEP = 39
+  - income = poor
+  - age = ageto30
+  - **WTP = $286.23**
+- Respondent 3: 
+  - NEP = 53
+  - income = one_percent
+  - age = ageto50
+  - **WTP = $489.73**
+  
+<br>
+
+We used the same equation from #2, but instead of using the means and modes for the variables, we plugged in these numbers for each random respondent.
+
+###**4.** 
 ```{r #4}
 
 # 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
@@ -145,6 +187,9 @@ bid_average # $282.52
 
 ```
 
+We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**.
+
+###**5.** 
 ```{r #5}
 
 # 5. If there are 150,000 households in Santa Barbara County, estimate the total benefit of a VSR program to these households.
@@ -154,6 +199,9 @@ total_benefit # $42,378,337
 
 ```
 
+We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of $42,378,337. Because you can assume humans are willing to pay this amount for having these whales exist, that’s the total benefit humans are receiving.
+
+###**6.** 
 ```{r #6}
 
 # 6. Based only on these benefits, do the benefits of the VSR program outweigh the costs?
@@ -164,6 +212,9 @@ net_benefits
 
 ```
 
+We subtracted the $7 million cost of the VSR program from the total benefit of $42,378,337 to find that yes, the benefits of the VSR program outweigh the costs by $35,378,337.
+
+###**7.** 
 ```{r #7}
 
 # 7. Suppose the price of a carbon credit is $Z per ton, at what price Z* will the shipping industry decide to adopt the VSR for purely self-interested reasons? (Note: if ships voluntarily reduce speed, then the $7 million cost (noted above) of implementing the VSR would be avoided)
@@ -175,6 +226,9 @@ net_benefits
 
 ```
 
+If ships voluntarily reduce speed, the cost to each shipper would be $1,000 and 20 tons of CO2 emissions per transit would be reduced. Therefore, the price of 1 ton of CO2 is worth $50 ($1,000/20 tons). If there's a carbon credit worth $50/ton of CO2, the shipping industry wouldn't lose any money, and would adopt the VSR for purely self-interested reasons.
+
+###**8.** 
 ```{r #8}
 
 # 8. Now suppose the carbon credit price is exactly Z*, so all ships voluntarily reduce speed to achieve the 60% risk reduction. Approximately how many whales would be saved by this? What would be the social value of allowing ships to enter the carbon trading market?
@@ -186,3 +240,9 @@ net_benefits
 
 
 ```
+
+If a 20% risk reduction saves 5 whales, then a 60% risk reduction saves 15 whales.
+
+social value = value of program + value of offset carbon - compliance cost
+
+Sine the value of offset carbon and the compliance cost are the same, they cancel each other out. Therefore, the social value of allowing ships to enter the carbon trading market is the same as the value of the program, which we found to be $42,378,337 (#5).
