@@ -1,23 +1,24 @@
 ---
 output:
-  html_document: 
+  html_document:
     df_print: paged
     theme: cosmo
+  pdf_document: default
 ---
 
 **To:** Santa Barbara County Board of Supervisors <br>
-**From:** Laura Ingulsrud & Jenny Balmagia <br>
+**From:** Laura Ingulsrud & Jenny Balmagia, WorthWhale Consulting LLC <br>
 **Re:** Economic Benefits of Reducing Whale Strikes in the Santa Barbara Channel <br>
-**Date:** 23 May 2019<br>
+**Date:** 23 May 2019 <br><br>
 
-**Introduction**
+**Introduction** <br>
+In our analysis of whether Santa Barbara County (County) should implement a vessel speed reduction (VSR) program in the Santa Barbara Channel (Channel) to reduce whale strikes, we  quantified the costs and benefits and found the program to be a good investment. To reach this conclusion, we determined the County resident’s demand, or willingness-to-pay (WTP), for fewer whale strikes using a contingent valuation model (CVM) and compared this to the cost of implementation.
 
+**Analysis and Results** <br>
+This analysis estimates the expected benefits of a VSR program through a CVM survey distributed to 500 County residents. Using the survey results, we extrapolated County resident’s stated preference or WTP for reducing whale strikes in the Channel. This was accomplished by creating a linear regression model in R with the survey data predicting an individual respondent’s probability of voting “yes” for the VSR program.  We used this model to predict the median WTP for a 60% reduction in whale strikes, or 15 whales saved annually. From this, we found County residents (150,000 households) are willing to spend $42,378,337 to prevent 15 whale deaths. Considering the cost of implementing the VSR program is $7 million, residents would experience a benefit of $35,378,337 if the program were funded by taxpayers.  
 
-**Analysis and Results**
-
-
-**Recommendations**
-
+**Recommendations** <br>
+Given these results, the Board of Supervisors should encourage implementation of the VSR program, as the benefits to County residents far outweigh the costs. As stated above, if residents are taxed a total of $7 million to implement the VSR program, they experience a benefit of $35,378,337. However, with a carbon trading market that offers carbon credits of at least $50/ton of CO2, shippers will voluntarily opt into the VSR program and eliminate the $7 million implementation cost. By reducing their speed by 60%, ships will not only reduce their probability of striking a whale but emit less CO2. At a carbon credit price of $50/ton of CO2, shippers would regain any revenue lost by slowing down. If the shipping industry were to participate in such a carbon offset program, the net benefit to residents would increase to $42,378,337 as the $7 million cost would be avoided. Adoption of either scenario will result in a significant positive net benefit for County residents, with the carbon trading market scenario resulting in the greatest net benefit. As this program would save 15 whales a year from lethal ship strikes, County residents will benefit from the continued presence of these charismatic species for generations to come.
 
 <P style="page-break-before: always">
 
@@ -78,20 +79,21 @@ ageto30 <- whalesurvey_lm$coefficients[12]
   # Income: middle
 
 ```
-<br>
 
 **Linear Regression Model:** <br>
 
-$Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(ageto30, digits = 4)`)(age~to~thirty) + (`r round(ageto40, digits = 4)`)(age~to~forty) + (`r round(ageto50, digits = 4)`)(age~to~fifty) + (`r round(ageto60, digits = 4)`)(age~to~sixty) + (`r round(poor, digits = 4)`)(poor~income~level) + (`r round(rich, digits = 4)`)(rich~income~level) + (`r round(very_rich,digits = 4)`)(very~rich~income~level) +(`r round(one_percent, digits = 4)`)(one~percent~income~level) +  (`r round(NEP, digits = 4)`)(NEP) + (`r round(bid, digits = 4)`)(bid) + (`r round(risk, digits = 4)`)(risk~reduction~level)$
+$Probability~of~Voting~Yes = intercept + age~to~thirty + age~to~forty + age~to~fifty + age~to~sixty + poor~income~level + rich~income~level + very~rich~income~level + one~percent~income~level + NEP + bid + risk~reduction~level$
+
+$Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(ageto30, digits = 4)`) + (`r round(ageto40, digits = 4)`) + (`r round(ageto50, digits = 4)`) + (`r round(ageto60, digits = 4)`) + (`r round(poor, digits = 4)`) + (`r round(rich, digits = 4)`) + (`r round(very_rich,digits = 4)`) +(`r round(one_percent, digits = 4)`) +  (`r round(NEP, digits = 4)`) + (`r round(bid, digits = 4)`) + (`r round(risk, digits = 4)`)$
 
 <br>
-
+<center>
 ```{r stargazer table, results="asis", echo=FALSE}
 
 stargazer::stargazer(whalesurvey_lm, type = "html", title = "Linear Regression Coefficients", digits = 4)
 
 ```
-
+</center>
 <br>
 
 **Reference coefficients:**
@@ -149,17 +151,13 @@ bid_diff # $2.78
 
 ```
 
-If a risk reduction of 20% saves 5 whales, then a risk reduction of 4% saves 1 whale. We created two functions, one assuming a risk reduction of 0% and one of 4%, then took the difference in value of these two functions to find the value of a single prevented whale death is **$2.78**.
+If a risk reduction of 20% saves 5 whales, then a risk reduction of 4% saves 1 whale. We created two functions, one assuming a risk reduction of 0% and one of 4%, then took the difference in value of these two functions to find the value of a single prevented whale death is **$2.78**. <br>
 
-<br>
+$Bid(0) = \frac{0.5 - intercept - (risk~reduction~level)(0~percent) - (NEP)(mean~NEP) - one~percent~income~level - age~to~30}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(0) - (`r round(NEP, digits = 4)`)(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{`r round(bid, digits = 4)`}$ <br>
 
-$Bid(0) = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*0) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{(`r round(bid, digits = 4)`)}$
+$Bid(4) = \frac{0.5 - intercept - (risk~reduction~level)(4~percent) - (NEP)(mean~NEP) - one~percent~income~level - age~to~30}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(4) - (`r round(NEP, digits = 4)`)(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{`r round(bid, digits = 4)`}$ <br>
 
-$Bid(4) = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`*4) - (`r round(NEP, digits = 4)`)*(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{(`r round(bid, digits = 4)`)}$
-
-$Bid(4) - Bid(0)$ = $2.78
-
-<br>
+$Bid(4) - Bid(0)$ = $2.78 <br>
 
 **Assumptions:**
 
@@ -188,25 +186,33 @@ bid3 # $489.73
 
 ```
 
-* *Respondent 1:* <br>
-  + NEP = 44 <br>
-  + income = very_rich <br>
-  + age = ageto60 <br>
-  + **WTP = $367.27** <br>
-  <br>
-* *Respondent 2:* <br>
-  + NEP = 39 <br>
-  + income = poor <br>
-  + age = ageto30 <br>
-  + **WTP = $286.23** <br>
-  <br>
-* *Respondent 3:* <br>
-  + NEP = 53 <br>
-  + income = one_percent <br>
-  + age = ageto50 <br>
-  + **WTP = $489.73** <br>
+We used the same equation from #2, but instead of using the means and modes for the variables, we plugged in these numbers for each random respondent. <br>
 
-We used the same equation from #2, but instead of using the means and modes for the variables, we plugged in these numbers for each random respondent. <br><br>
+*Respondent 1:* <br>
+- NEP = 44 <br>
+- income = very_rich <br>
+- age = ageto60 <br>
+- **WTP = $367.27** <br>
+  
+$Bid~Average_1 = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (NEP)(44) - very~rich~income~level - age~to~60}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(60) - (`r round(NEP, digits = 4)`)(44) - (`r round(very_rich, digits = 4)`) - (`r round(ageto60, digits = 4)`))}{`r round(bid, digits = 4)`} = 367.27$ <br><br>
+
+*Respondent 2:* <br>
+- NEP = 39 <br>
+- income = poor <br>
+- age = ageto30 <br>
+- **WTP = $286.23** <br>
+  
+$Bid~Average_2 = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (NEP)(39) - one~percent~income~level - age~to~50}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(60) - (`r round(NEP, digits = 4)`)(39) - (`r round(one_percent, digits = 4)`) - (`r round(ageto50, digits = 4)`))}{`r round(bid, digits = 4)`} = 286.23$ <br><br>
+  
+*Respondent 3:* <br>
+- NEP = 53 <br>
+- income = one_percent <br>
+- age = ageto50 <br>
+- **WTP = $489.73** <br>
+
+$Bid~Average_3 = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (NEP)(53) - poor~income~level - age~to~30}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(60) - (`r round(NEP, digits = 4)`)(53) - (`r round(poor, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{`r round(bid, digits = 4)`} = 489.73$ <br>
+
+<br>
 
 ###4. Mean WTP for VSR Program
 ```{r #4, include=FALSE, echo=FALSE}
@@ -218,7 +224,9 @@ bid_average # $282.52
 
 ```
 
-We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**. <br><br>
+We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**. <br>
+
+$Bid~Average = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (NEP)(mean~NEP) - one~percent~income~level - age~to~30}{bid} = \frac{0.5 - ((`r round(intercept, digits = 4)`) - (`r round(risk, digits = 4)`)(60) - (`r round(NEP, digits = 4)`)(`r round(meanNEP, digits = 4)`) - (`r round(one_percent, digits = 4)`) - (`r round(ageto30, digits = 4)`))}{`r round(bid, digits = 4)`} = 282.52$ <br><br>
 
 ###5. Total Benefit of VSR Program to Santa Barbara County Households
 ```{r #5, include=FALSE, echo=FALSE}
@@ -230,7 +238,7 @@ total_benefit # $42,378,337
 
 ```
 
-We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of **$42,378,337**. Because you can assume humans are willing to pay this amount for having these whales exist, that’s the total benefit humans are receiving. <br><br>
+We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of **$42,378,337**. Because you can assume Santa Barbara County residents are willing to pay this amount for having these whales exist, that amount equates to the total benefit residents are receiving. <br><br>
 
 ###6. VSR Program Benefit-Cost Comparison
 ```{r #6, include=FALSE, echo=FALSE}
