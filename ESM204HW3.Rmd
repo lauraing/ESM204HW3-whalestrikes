@@ -119,7 +119,8 @@ summary(whalesurvey_glm)
 # agetofifty         0.062771   0.355469   0.177  0.85983    
 # agetoforty        -0.127045   0.336290  -0.378  0.70559    
 # agetosixty        -0.107886   0.330639  -0.326  0.74420    
-# agetothirty        0.092936   0.318546   0.292  0.77048   
+# agetothirty        0.092936   0.318546   0.292  0.77048  
+
 
 # Assign coefficients (EXTRA CREDIT)
 interceptlog <- whalesurvey_glm$coefficients[1]
@@ -139,7 +140,7 @@ ageto30log <- whalesurvey_glm$coefficients[12]
   # Age: oversixty
   # Income: middle
 
-
+#AIC of glm model, 561. AIC of linear model, 586. Not super different which means fit is fairly similar to both, but logically glm should fit better? Linear is overestimating, but why???
 ```
 
 **Linear Regression Model:** <br>
