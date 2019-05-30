@@ -2,9 +2,19 @@
 output:
   html_document:
     df_print: paged
+    geometry: margin=0cm
     theme: cosmo
+    fontsize: 12pt
   pdf_document: default
 ---
+
+<style type="text/css">
+.main-container {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
 
 **To:** Santa Barbara County Board of Supervisors <br>
 **From:** Laura Ingulsrud & Jenny Balmagia, WorthWhale Consulting LLC <br>
@@ -59,6 +69,20 @@ whalesurveydata <- read_csv("HW3Data.csv")
 whalesurvey_lm <- lm(vote ~ risk + bid + vote + NEP + income + age, data = whalesurveydata)
 
 summary(whalesurvey_lm)
+# Coefficients:
+#                     Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)        0.1196977  0.1198911   0.998    0.319    
+# risk               0.0007445  0.0008363   0.890    0.374    
+# bid               -0.0010699  0.0006585  -1.625    0.105    
+# NEP                0.0158639  0.0020887   7.595 1.58e-13 ***
+# incomeone_percent  0.0088282  0.0598973   0.147    0.883    
+# incomepoor         0.0027386  0.0649833   0.042    0.966    
+# incomerich         0.0074891  0.0682176   0.110    0.913    
+# incomevery_rich    0.0467922  0.0674876   0.693    0.488    
+# agetofifty         0.0099816  0.0633105   0.158    0.875    
+# agetoforty        -0.0201190  0.0623958  -0.322    0.747    
+# agetosixty        -0.0162261  0.0595666  -0.272    0.785    
+# agetothirty        0.0204401  0.0578269   0.353    0.724    
 
 # Assign coefficients
 intercept <- whalesurvey_lm$coefficients[1]
@@ -78,6 +102,44 @@ ageto30 <- whalesurvey_lm$coefficients[12]
   # Age: oversixty
   # Income: middle
 
+########################### EXTRA CREDIT ###########################
+whalesurvey_glm <- glm(vote ~ risk + bid + vote + NEP + income + age, data = whalesurveydata, family = binomial)
+
+summary(whalesurvey_glm)
+# Coefficients:
+#                    Estimate Std. Error z value Pr(>|z|)    
+# (Intercept)       -2.088292   0.665981  -3.136  0.00171 ** 
+# risk               0.004169   0.004631   0.900  0.36802    
+# bid               -0.005865   0.003639  -1.612  0.10700    
+# NEP                0.083213   0.012273   6.780  1.2e-11 ***
+# incomeone_percent  0.059366   0.331487   0.179  0.85787    
+# incomepoor         0.040298   0.359092   0.112  0.91065    
+# incomerich         0.060219   0.376718   0.160  0.87300    
+# incomevery_rich    0.277879   0.380863   0.730  0.46563    
+# agetofifty         0.062771   0.355469   0.177  0.85983    
+# agetoforty        -0.127045   0.336290  -0.378  0.70559    
+# agetosixty        -0.107886   0.330639  -0.326  0.74420    
+# agetothirty        0.092936   0.318546   0.292  0.77048   
+
+# Assign coefficients (EXTRA CREDIT)
+interceptlog <- whalesurvey_glm$coefficients[1]
+risklog <- whalesurvey_glm$coefficients[2]
+bidlog <- whalesurvey_glm$coefficients[3]
+NEPlog <- whalesurvey_glm$coefficients[4]
+one_percentlog <- whalesurvey_glm$coefficients[5]
+poorlog <- whalesurvey_glm$coefficients[6]
+richlog <- whalesurvey_glm$coefficients[7]
+very_richlog <- whalesurvey_glm$coefficients[8]
+ageto50log <- whalesurvey_glm$coefficients[9]
+ageto40log <- whalesurvey_glm$coefficients[10]
+ageto60log <- whalesurvey_glm$coefficients[11]
+ageto30log <- whalesurvey_glm$coefficients[12]
+
+# Reference coefficients:
+  # Age: oversixty
+  # Income: middle
+
+
 ```
 
 **Linear Regression Model:** <br>
@@ -91,6 +153,9 @@ $Probability~of~Voting~Yes = (`r round(intercept, digits = 4)`) + (`r round(aget
 ```{r stargazer table, results="asis", echo=FALSE}
 
 stargazer::stargazer(whalesurvey_lm, type = "html", title = "Linear Regression Coefficients", digits = 4)
+
+########################### EXTRA CREDIT ###########################
+stargazer::stargazer(whalesurvey_glm, type = "html", title = "Logistic Regression Coefficients", digits = 4)
 
 ```
 </center>
@@ -148,6 +213,17 @@ bid_diff <- bid4 - bid0
 
 bid_diff # $2.78
 
+########################### EXTRA CREDIT ###########################
+
+#Value of 1 whale 
+
+bid0log <- (0.5 - interceptlog - risklog*0 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+
+bid4log <- (0.5 - interceptlog - risklog*4 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+
+bid_difflog <- bid4log - bid0log
+
+bid_difflog # $2.84
 
 ```
 
@@ -222,6 +298,11 @@ $Bid~Average_3 = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (N
 bid_average <- (0.5 - intercept - risk*60 - NEP*meanNEP - one_percent - ageto30)/bid
 bid_average # $282.52
 
+########################### EXTRA CREDIT ###########################
+
+bid_averagelog <- (0.5 - interceptlog - risklog*60 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+bid_averagelog # $171.64
+
 ```
 
 We used the same assumptions as #2 and a risk reduction of 60% to get a mean WTP of **$282.52**. <br>
@@ -236,6 +317,11 @@ $Bid~Average = \frac{0.5 - intercept - (risk~reduction~level)(60~percent) - (NEP
 total_benefit <- 150000*bid_average
 total_benefit # $42,378,337
 
+########################### EXTRA CREDIT ###########################
+
+total_benefitlog <- 150000*bid_averagelog
+total_benefitlog # $25,746,456
+
 ```
 
 We multiplied 150,000 households by the mean WTP ($282.52) to find a total benefit of **$42,378,337**. Because you can assume Santa Barbara County residents are willing to pay this amount for having these whales exist, that amount equates to the total benefit residents are receiving. <br><br>
@@ -248,6 +334,12 @@ We multiplied 150,000 households by the mean WTP ($282.52) to find a total benef
 #Yes, by $35,378,337
 net_benefits <- total_benefit - 7000000
 net_benefits
+
+########################### EXTRA CREDIT ###########################
+
+#Yes, by $18,746,456
+net_benefitslog <- total_benefitlog - 7000000
+net_benefitslog
 
 ```
 
