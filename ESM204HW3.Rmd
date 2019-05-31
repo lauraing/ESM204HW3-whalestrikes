@@ -218,9 +218,9 @@ bid_diff # $2.78
 
 #Value of 1 whale 
 
-bid0log <- (0.5 - interceptlog - risklog*0 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+bid0log <- (0 - interceptlog - risklog*0 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
 
-bid4log <- (0.5 - interceptlog - risklog*4 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+bid4log <- (0 - interceptlog - risklog*4 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
 
 bid_difflog <- bid4log - bid0log
 
@@ -261,14 +261,14 @@ bid3 # $489.73
 
 ########################### EXTRA CREDIT ###########################
 
-bid1log <- (0.5 - interceptlog - risklog*60 - NEPlog*44 - very_richlog - ageto60log)/bidlog
-bid1log # $254.59
+bid1log <- (0 - interceptlog - risklog*60 - NEPlog*44 - very_richlog - ageto60log)/bidlog
+bid1log # $339.84
 
-bid2log <- (0.5 - interceptlog - risklog*60 - NEPlog*39 - poorlog - ageto30log)/bidlog
-bid2log # $177.39
+bid2log <- (0 - interceptlog - risklog*60 - NEPlog*39 - poorlog - ageto30log)/bidlog
+bid2log # $262.63
 
-bid3log <- (0.5 - interceptlog - risklog*60 - NEPlog*53 - one_percentlog - ageto50log)/bidlog
-bid3log # $374.13
+bid3log <- (0 - interceptlog - risklog*60 - NEPlog*53 - one_percentlog - ageto50log)/bidlog
+bid3log # $459.37
 
 ```
 
@@ -310,8 +310,8 @@ bid_average # $282.52
 
 ########################### EXTRA CREDIT ###########################
 
-bid_averagelog <- (0.5 - interceptlog - risklog*60 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
-bid_averagelog # $171.64
+bid_averagelog <- (0 - interceptlog - risklog*60 - NEPlog*meanNEP - one_percentlog - ageto30log)/bidlog
+bid_averagelog # $256.89
 
 ```
 
