@@ -330,7 +330,7 @@ total_benefit # $42,378,337
 ########################### EXTRA CREDIT ###########################
 
 total_benefitlog <- 150000*bid_averagelog
-total_benefitlog # $25,746,456
+total_benefitlog # $38,534,051
 
 ```
 
@@ -347,7 +347,7 @@ net_benefits
 
 ########################### EXTRA CREDIT ###########################
 
-#Yes, by $18,746,456
+#Yes, by $31,534,051
 net_benefitslog <- total_benefitlog - 7000000
 net_benefitslog
 
